@@ -1,0 +1,9 @@
+[submodule "nuttx"]
+	path = nuttx
+	url = https://github.com/78/nuttx.git
+[submodule "nuttx-apps"]
+	path = nuttx-apps
+	url = https://github.com/78/nuttx-apps.git
+[submodule "deps/esp-hal-3rdparty"]
+	path = deps/esp-hal-3rdparty
+	url = https://github.com/78/esp-hal-3rdparty.git

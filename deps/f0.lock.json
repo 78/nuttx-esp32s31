@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "repositories": [
+    {
+      "name": "nuttx",
+      "candidates": [
+        "nuttx"
+      ],
+      "remote": "https://github.com/78/nuttx.git",
+      "commit": "ec86648c6293837c8cc20d817a96b60e5e9cf8da",
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "untracked_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "nuttx-apps",
+      "candidates": [
+        "nuttx-apps"
+      ],
+      "remote": "https://github.com/78/nuttx-apps.git",
+      "commit": "decdee04e4cca7e4a122e0d595be1f78396810f2",
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "untracked_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "esp-hal",
+      "candidates": [
+        "deps/esp-hal-3rdparty"
+      ],
+      "remote": "https://github.com/78/esp-hal-3rdparty.git",
+      "commit": "da561c9d918b9dc28675287cff76332a3d48cf52",
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "untracked_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitlinks": {
+        "components/esp_coex/lib": "ddc56fa524a38df3098d2f36475fbe3eefe9b4f4",
+        "components/esp_phy/lib": "5695f4f38108658bc4a33e4712c1ebcb34911434",
+        "components/esp_wifi/lib": "66c5b501748947811e5d6d33f4c70ab3e05944ff",
+        "components/mbedtls/mbedtls": "582ff482038db6e4010dbf6f943d97b05ad06ea5"
+      }
+    },
+    {
+      "name": "esp-idf",
+      "candidates": [
+        "deps/esp-idf",
+        "tmp/esp-idf-clean"
+      ],
+      "remote": "https://github.com/espressif/esp-idf.git",
+      "commit": "14f663f003eb8fd9a688c301a412a9540d29dacf",
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "untracked_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gitlinks": {
+        "components/esp_coex/lib": "3c490f8059e0a7eeedda30aaa1e4b3afad06f632",
+        "components/esp_phy/lib": "e294ff039e26b3486d6c9e5853d24d98ee3300b2",
+        "components/esp_wifi/lib": "248fd630de1f6e4873085e3af9af280895b42d61"
+      },
+      "files": {
+        "components/esp_coex/lib/esp32s31/libcoexist.a": "4b00fc4258ac3a7bef3ecd6c0f402d38afde9aafe50ceaf07951406cff576276",
+        "components/esp_phy/lib/esp32s31/libbtbb.a": "ebd67c6a32081d0fcd143bbb0ed53f962fc587058e20eceb59012beae47528df",
+        "components/esp_phy/lib/esp32s31/libbttestmode.a": "0b8661c51559254df20f7499786963f49bb4c5e4321199e867b3a264eefaa2c7",
+        "components/esp_phy/lib/esp32s31/libphy.a": "c0aec58157ab706247ce975dd702118d7520c856929fe4c66c145a250ef61398",
+        "components/esp_phy/lib/esp32s31/librftest.a": "5b010cde93d7bae62d8dfc34c2725c6eb51c393cef59f9bda810595d43b679b5",
+        "components/esp_wifi/lib/esp32s31/libcore.a": "8a6689c26a241838405276f1bd3f1dfad8ab16f8550025ee0a9729bf8065c3ed",
+        "components/esp_wifi/lib/esp32s31/libespnow.a": "53e157c40b45c58729fed5946052ac35e2fcafb4f4e3b0344e63ac859f41373b",
+        "components/esp_wifi/lib/esp32s31/libmesh.a": "61f5174becd0305f4f966180154387408f9d68a5a11621213950458ebe39f216",
+        "components/esp_wifi/lib/esp32s31/libnet80211.a": "c47b3d1927c6fe1af3c1573b858369565799807488d0cd8e991717213a29b8ac",
+        "components/esp_wifi/lib/esp32s31/libpp.a": "9efc9467d279b38b1a49b501145bace1a5b0c51bbd38824a26d61c43b41ed541",
+        "components/esp_wifi/lib/esp32s31/libsmartconfig.a": "f00f4b54af9b0e4e15cf287e22d39b8a4c621abfaf9483efc9544fe1544bc6df",
+        "components/esp_wifi/lib/esp32s31/libwapi.a": "d2abaded1302d0004d65c72b651efa3960bb562a9659ff942dbb9553726372ae"
+      }
+    }
+  ]
+}

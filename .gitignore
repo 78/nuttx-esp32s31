@@ -1,0 +1,38 @@
+# Local environments and editor state
+.venv*/
+.vscode/
+.DS_Store
+__pycache__/
+*.pyc
+
+# Credentials
+.env
+.env.*
+!.env.example
+.wifi-env
+*.secrets
+
+# Private local history; never publish this directory
+.archive/
+
+# Build output
+out/
+build/
+build-*/
+nuttx-build-*/
+
+# Local toolchains, reference checkouts, and disposable scratch
+tmp/
+
+# R&D-only material is kept under .archive, outside the public boundary
+artifacts/
+experiments/
+docs/experiments/
+docs/investigations/
+docs/reports/
+docs/plans/
+
+# Platform-generated packages and crash/debug bundles
+*.app.pkg
+*.debug-bundle
+*.core

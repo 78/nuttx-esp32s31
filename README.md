@@ -57,8 +57,14 @@ Install the RISC-V NuttX toolchain, CMake, Ninja, Python 3, and the ESP-IDF
 tool environment pinned by `deps/f0.lock.json`. Export `IDF_PATH`, then run:
 
 ```sh
+python3 -m venv .venv-nuttx
+. .venv-nuttx/bin/activate
+python -m pip install -r requirements.txt
 ./build.sh
 ```
+
+The Python requirements cover both configuration (`kconfiglib`) and serial
+hardware regression (`pyserial`).
 
 The default production output is written to `out/esp32s31-production/`.
 `nuttx.bin` and `appfs.img` form one ABI-matched image set and must always be

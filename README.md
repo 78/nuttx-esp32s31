@@ -17,6 +17,68 @@ platform, SDK, cloud service, or product UI.
 - Wi-Fi station mode, DHCP, DNS, NTP, TCP, TLS, and HTTP
 - Automated boot, isolation, SMP, network, TLB, and multi-process regression
 
+## Console demonstration
+
+The following abridged capture shows Wi-Fi connectivity and independent U-mode
+applications running across both CPU cores. Network names, credentials,
+addresses, and device identifiers are intentionally redacted. The fenced
+console block preserves the original line layout and scrolls horizontally on
+narrow displays.
+
+```console
+nsh> wapi scan wlan0
+[CPU0] APPVERIFY:PASS /system/bin/wapi sha256=<verified-sha256>
+bssid / frequency / signal level / encode / ssid
+<access-point list omitted>
+
+nsh> wapi psk wlan0 <wifi-password> 3 2
+[CPU0] APPVERIFY:PASS /system/bin/wapi sha256=<verified-sha256>
+nsh> wapi essid wlan0 <wifi-ssid> 1
+[CPU0] APPVERIFY:PASS /system/bin/wapi sha256=<verified-sha256>
+nsh> renew wlan0
+[CPU0] APPVERIFY:PASS /system/bin/renew sha256=<verified-sha256>
+nsh> ifconfig
+wlan0  Link encap:Ethernet HWaddr <device-mac> at RUNNING mtu 1500
+       inet addr:<local-ip> DRaddr:<gateway> Mask:255.255.255.0
+
+nsh> ping -c 4 example.com
+PING <resolved-address> 56 bytes of data
+56 bytes from <resolved-address>: icmp_seq=0 time=10.0 ms
+56 bytes from <resolved-address>: icmp_seq=1 time=10.0 ms
+56 bytes from <resolved-address>: icmp_seq=2 time=10.0 ms
+56 bytes from <resolved-address>: icmp_seq=3 time=10.0 ms
+4 packets transmitted, 4 received, 0% packet loss
+
+nsh> busy --threads 2 &
+[CPU0] APPVERIFY:PASS /system/bin/busy sha256=<verified-sha256>
+busy [14:100]
+BUSY:START pid=14 mode=auto cpu=1 priority=100 rr-ms=20 threads=2
+BUSY:THREAD tid=14 cpu=1
+BUSY:THREAD tid=15 cpu=0
+
+nsh> busy &
+[CPU1] APPVERIFY:PASS /system/bin/busy sha256=<verified-sha256>
+busy [19:100]
+BUSY:START pid=19 mode=auto cpu=0 priority=100 rr-ms=20 threads=1
+BUSY:THREAD tid=19 cpu=0
+
+nsh> ps
+  TID   PID  PPID CPU PRI POLICY   TYPE      STATE    CPU COMMAND
+   14    14     6 --- 100 RR       Task      Ready  34.3% busy --threads 2
+   15    14     6 --- 100 RR       pthread   Ready  32.5% busy
+   19    19     6 --- 100 RR       Task      Ready  30.7% busy
+
+nsh> free
+      total       used       free    maxused    maxfree  nused  nfree name
+     335332     130228     205104     145896     132456    303     20 Kmem
+   16777216    1810432   14966784              14966784               Page
+
+nsh> uptime
+00:30:41 up  0:02, load average: 1.00, 1.00, 1.00
+nsh> uname -a
+NuttX  0.0.0 ec86648c62 risc-v esp32s31-core-function-board
+```
+
 ## Repository layout
 
 ```text

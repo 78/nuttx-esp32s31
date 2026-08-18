@@ -27,16 +27,12 @@ narrow displays.
 
 ```console
 nsh> wapi scan wlan0
-[CPU0] APPVERIFY:PASS /system/bin/wapi sha256=<verified-sha256>
 bssid / frequency / signal level / encode / ssid
 <access-point list omitted>
 
 nsh> wapi psk wlan0 <wifi-password> 3 2
-[CPU0] APPVERIFY:PASS /system/bin/wapi sha256=<verified-sha256>
 nsh> wapi essid wlan0 <wifi-ssid> 1
-[CPU0] APPVERIFY:PASS /system/bin/wapi sha256=<verified-sha256>
 nsh> renew wlan0
-[CPU0] APPVERIFY:PASS /system/bin/renew sha256=<verified-sha256>
 nsh> ifconfig
 wlan0  Link encap:Ethernet HWaddr <device-mac> at RUNNING mtu 1500
        inet addr:<local-ip> DRaddr:<gateway> Mask:255.255.255.0
@@ -57,16 +53,22 @@ BUSY:THREAD tid=14 cpu=1
 BUSY:THREAD tid=15 cpu=0
 
 nsh> busy &
-[CPU1] APPVERIFY:PASS /system/bin/busy sha256=<verified-sha256>
 busy [19:100]
 BUSY:START pid=19 mode=auto cpu=0 priority=100 rr-ms=20 threads=1
 BUSY:THREAD tid=19 cpu=0
 
 nsh> ps
-  TID   PID  PPID CPU PRI POLICY   TYPE      STATE    CPU COMMAND
-   14    14     6 --- 100 RR       Task      Ready  34.3% busy --threads 2
-   15    14     6 --- 100 RR       pthread   Ready  32.5% busy
-   19    19     6 --- 100 RR       Task      Ready  30.7% busy
+  TID   PID  PPID CPU PRI POLICY   TYPE    NPX STATE    EVENT     SIGMASK            STACK    USED FILLED    CPU COMMAND
+    0     0     6   0   0 FIFO     Kthread   - Assigned           0000000000000000 0003040 0000876  28.8%   0.0% CPU0 IDLE
+    1     0     6   1   0 FIFO     Kthread   - Assigned           0000000000000000 0003040 0000368  12.1%   0.0% CPU1 IDLE
+    2     0     6 --- 100 RR       Kthread   - Waiting  Semaphore 0000000000000000 0001968 0000620  31.5%   0.0% lpwork 0x2f0106a8 0x2f0106f8
+    4     0     6 --- 252 RR       Kthread   - Waiting  Semaphore 0000000000000000 0004016 0000556  13.8%   0.0% esp_timer 0x2f02e888
+    5     0     6 --- 253 RR       Kthread   - Waiting  MQ empty  0000000000000000 0006608 0001896  28.6%   0.0% wifi
+    6     6     0   1 101 RR       Task      - Running            0000000000000000 0004032 0001188  29.4%   0.8% /system/bin/init
+    7     0     6 --- 100 RR       Kthread   - Waiting  Semaphore 0000000000000000 0001968 0000628  31.9%   0.5% netdev-wlan0 0x2f03d160 0
+   14    14     6 --- 100 RR       Task      - Ready              0000000000000000 0001968 0000532  27.0%  34.3% busy --threads 2
+   15    14     6 --- 100 RR       pthread   - Ready              0000000000000000 0002016 0000452  22.4%  32.5% busy 0x61002ad2 0x2
+   19    19     6 --- 100 RR       Task      - Ready              0000000000000000 0002000 0000532  26.6%  30.7% busy
 
 nsh> free
       total       used       free    maxused    maxfree  nused  nfree name

@@ -27,7 +27,7 @@
         "deps/esp-hal-3rdparty"
       ],
       "remote": "https://github.com/78/esp-hal-3rdparty.git",
-      "commit": "da561c9d918b9dc28675287cff76332a3d48cf52",
+      "commit": "290edc31b50decca660c1a11ce3506fd9b2e1e27",
       "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "untracked_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
       "gitlinks": {

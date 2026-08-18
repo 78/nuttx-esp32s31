@@ -36,10 +36,12 @@ material are excluded from the public repository.
 
 ## Clone
 
-Clone all three source dependencies recursively:
+For a faster first checkout, clone the integration and its dependencies with
+shallow history:
 
 ```sh
-git clone --recurse-submodules https://github.com/78/nuttx-esp32s31.git
+git clone --depth 1 --recurse-submodules --shallow-submodules \
+  https://github.com/78/nuttx-esp32s31.git
 cd nuttx-esp32s31
 ```
 

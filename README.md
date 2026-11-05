@@ -140,6 +140,40 @@ To build the validation profile with the regression applications enabled:
 S31_PROFILE=validation ./build.sh
 ```
 
+## Flashing
+
+For the maintained production and validation profiles, flash both images from
+the same output directory:
+
+| Image | Flash offset | Purpose |
+| --- | --- | --- |
+| `nuttx.bin` | `0x2000` | ESP32-S31 simple-boot kernel |
+| `appfs.img` | `0x200000` | Read-only application seed mounted at `/system/bin` |
+
+With the build tool environment active, use the flash target to select the
+offsets from the build configuration and write the matching image pair:
+
+```sh
+(cd out/esp32s31-production && shasum -a 256 -c images.sha256)
+ESPTOOL_PORT=/dev/ttyACM0 cmake --build out/esp32s31-production --target flash
+```
+
+Use `out/esp32s31-validation` for the validation profile. Replace the example
+serial path with the actual device on your host.
+
+- The board's native USB Serial/JTAG interface is used for flashing and the
+  NuttX USB console (`CONFIG_ESPRESSIF_USBSERIAL`). On Linux it commonly appears
+  as `/dev/ttyACM0`; on macOS, look for `/dev/cu.usbmodem*`. It can disconnect
+  during reset or ROM download and re-enumerate when firmware starts.
+- UART0 through a USB-to-TTL adapter is the recovery path. On Linux the adapter
+  commonly appears as `/dev/ttyUSB0`. Automatic download/reset requires its
+  DTR/RTS signals to be wired to the board's download/reset circuit; otherwise
+  use the board's BOOT/RESET controls. The maintained console is native USB,
+  even when images are written through UART0.
+
+See [the flashing guide](docs/FLASHING.md) for manual commands, partition
+boundaries, first-boot checks, and recovery.
+
 ## Dependency verification
 
 The build verifies the pinned source revisions, nested Git links, and required
